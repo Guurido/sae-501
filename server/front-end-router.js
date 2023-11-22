@@ -67,4 +67,55 @@ router.get("/a-propos(.html)?", async (_req, res) => {
     });
 });
 
+router.get("/lieux-de-vie(.html)?", async (_req, res) => {
+    let options = {
+        method: "GET",
+        url: `${res.locals.base_url}/api/saes?per_page=9`,
+    };
+
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
+
+    res.render("pages/front-end/lieux-de-vie.njk", {
+        // list_saes: result.data,
+        // Mettre contenu lieu de vie à la place de list sae
+    });
+});
+
+router.get("/medias(.html)?", async (_req, res) => {
+    let options = {
+        method: "GET",
+        url: `${res.locals.base_url}/api/saes?per_page=9`,
+    };
+
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
+
+    res.render("pages/front-end/medias.njk", {
+        // list_saes: result.data,
+        // Mettre contenu media à la place de list sae
+    });
+});
+
+router.get("/contact(.html)?", async (_req, res) => {
+    let options = {
+        method: "GET",
+        url: `${res.locals.base_url}/api/saes?per_page=9`,
+    };
+
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
+
+    res.render("pages/front-end/contact.njk", {
+        // list_saes: result.data,
+        // Mettre contenu contact à la place de list sae
+    });
+});
+
 export default router;

@@ -45,7 +45,7 @@ router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
         }
     }
 
-    res.render("/", {
+    res.render("pages/back-end/articles/add-edit.njk", {
         article: result?.data || {},
         list_errors: listErrors,
         is_edit: isEdit,

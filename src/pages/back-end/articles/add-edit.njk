@@ -1,0 +1,54 @@
+{% extends "layouts/back-end/base.njk" %}
+
+{% set chars_limit = 200 %}
+{% set page_name = "articles" %}
+
+{% import "components/back-end/input-file.njk" as input_file %}
+
+{% block main %}
+	<div class="bg-white rounded-2xl shadow-md pb-6">
+		<header class="p-6 pl-8 ">
+			<p class="text-4xl">
+				{% if is_edit == true %}
+					Editer
+					"{{ article.title }}"
+				{% else %}
+					Créer
+				{% endif %}
+			</p>
+			<p class="text-sm">Les champs avec
+				<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500"></span>
+				sont requis
+			</p>
+		</header>
+
+		<div class="px-8">
+			<form action="" data-form method="post" enctype="multipart/form-data">
+                {% for item in list_errors %}
+                    <p class="rounded-lg p-3 bg-red-100 text-red-800 border-solid border-x border-y border-red-700 mb-3">{{ item }}</p>
+                {% endfor %}
+
+                {% if is_success == true %}
+                    <p class="rounded-lg p-3 bg-green-100 text-green-800 border-solid border-x border-y border-green-700 mb-3">Element mis à jour</p>
+                {% endif %}
+				<label class="block mb-4">
+					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Titre</span>
+					<input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="title" value="{{ article.title }}"/>
+				</label>
+
+				<label class="block mb-4 w-fit">
+					<span class="font-bold text-slate-700 after:ml-0.5 after:text-red-500">Image</span>
+                    {{ input_file.field('/uploads/' ~ article.image if article.image else null, ".jpg, .jpeg, .png") }}
+				</label>
+
+				<label class="block mb-4">
+					<span class="font-bold text-slate-700">Contenu</span>
+					<textarea name="content" cols="15" rows="5" class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">{{ article.content }}</textarea>
+				</label>
+
+				<button class="mt-3 px-4 py-2 font-semibold text-sm bg-cyan-500 hover:bg-cyan-600 text-white rounded-2xl shadow-sm" type="submit">Sauvegarder</button>
+				<button class="mt-3 px-4 py-2 font-semibold text-sm bg-neutral-100 hover:bg-neutral-300 text-black rounded-2xl shadow-sm" type="reset">Réinitialiser</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
