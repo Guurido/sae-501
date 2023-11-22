@@ -1,0 +1,112 @@
+@import "./mixins/media-queries.scss";
+
+.bulle {
+  position: relative;
+  margin-bottom: 6rem;
+  margin-top: 4.75rem;
+}
+
+.bulle .titre {
+  font-family: "Times New Roman", Times, serif;
+  text-align: right;
+  font-weight: bold;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.bulle .txt-grand {
+  font-size: 3.375rem;
+  color: black;
+
+  @include mobile {
+    font-size: 2.375rem;
+  }
+}
+
+.bulle .txt-grand span,
+.bulle .txt-petit span {
+  display: inline-block;
+  background-color: white;
+  padding: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.bulle .txt-petit {
+  color: black;
+  font-size: 2.125rem;
+}
+
+.bulle-icone.rose {
+  background-color: #ef509f;
+}
+
+.bulle-icone.rouge {
+  background-color: #eb0706;
+}
+
+.bulle-icone.vert {
+  background-color: #0ceec0;
+}
+
+.bulle-icone.jaune {
+  background-color: #ffe700;
+}
+
+.bulle-icone.gris {
+  background-color: #012a37;
+}
+
+.bulle-icone {
+  position: absolute;
+  top: -46px;
+  right: 283px;
+  z-index: -1;
+  width: 384px;
+  height: 350px;
+  transition: transform 0.3s;
+  mask: url("/images/bulle.svg") no-repeat center / contain;
+  -webkit-mask: url("/images/bulle.svg") no-repeat center / contain;
+}
+
+.bulle-icone-bordure {
+  position: absolute;
+  top: -60px;
+  right: 241px;
+  z-index: -1;
+  width: 484px;
+  height: 360px;
+  transition: transform 0.3s;
+  mask: url("/images/bulle-bordure.svg") no-repeat center / contain;
+  -webkit-mask: url("/images/bulle-bordure.svg") no-repeat center /
+    contain;
+}
+
+.bulle-icone-bordure.rose {
+  background-color: #a50253;
+}
+
+.bulle-icone-bordure.rouge {
+  background-color: #a50253;
+}
+
+.bulle-icone-bordure.vert {
+  background-color: #03886d;
+}
+
+.bulle-icone-bordure.jaune {
+  background-color: #ee8f00;
+}
+
+.bulle-icone-bordure.gris {
+  background-color: #c9c9c9;
+}
+
+.bulle:hover .bulle-icone-bordure {
+  transform: translate(-30px, 4px);
+}
+
+.bulle:hover .bulle-icone {
+  transform: translate(5px, -6px);
+}

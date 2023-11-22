@@ -1,0 +1,67 @@
+{% macro previous(url, is_disabled = false) %}
+    {% if is_disabled %}
+        <span class="gap-x-2 items-center px-2 py-4 opacity-30 flex">
+            <svg class="h-5 w-5 text-gray-500" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+            </svg>
+            <span class="hidden lg:inline">Précédent</span>
+        </span>
+    {% else %}
+        <a aria-label="Précédent" href="{{ url }}" class="gap-x-2 items-center px-2 py-4 border-t-2 border-t-transparent hover:border-t-slate-400 border-solid flex">
+            <svg class="h-5 w-5 text-gray-500" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+            </svg>
+            <span class="hidden lg:inline">Précédent</span>
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{% macro next(url, is_disabled = false) %}
+    {% if is_disabled %}
+        <span class="gap-x-2 items-center px-2 py-4 opacity-30 lg:flex">
+            <span class="hidden lg:inline">Suivant</span>
+            <svg class="h-5 w-5 text-gray-500" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </span>
+    {% else %}
+        <a aria-label="Suivant" href="{{ url }}" class="gap-x-2 items-center px-2 py-4 border-t-2 border-t-transparent hover:border-t-slate-400 border-solid flex">
+            <span class="hidden lg:inline">Suivant</span>
+            <svg class="h-5 w-5 text-gray-500" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{% set out_of_range = false %}
+
+{% macro item(paginator, name="") %}
+    {% set query_params = "&" ~ (paginator.query_params) if paginator.query_params else "" %}
+
+    {% if paginator.total_pages > 1 %}
+        {{ previous("?page=" ~ (paginator.page - 1) ~ query_params, paginator.page == 1) }}
+        <select class="lg:hidden flex" data-paginator="{{ name }}">
+            {% for i in range(1, paginator.total_pages + 1) %}
+                <option {{ "selected" if i == paginator.page else "" }} value="{{ i }}">{{ 'Page ' ~ i }}</option>
+            {% endfor %}
+        </select>
+        <ul class="hidden lg:flex">
+            {% for i in range(1, paginator.total_pages + 1) %}
+                {% if (i <= 2 or i >= paginator.total_pages - 2 or (i - paginator.page)|abs <= 2) %}
+                    <li>
+                        <a class="{{ 'border-t-indigo-200' if i == paginator.page else 'border-t-transparent' }} hover:border-t-indigo-500 block p-4 border-t-2 border-solid" href="{{ current_url ~ "?page=" ~ i ~ query_params }}">{{ i }}</a>
+                    </li>
+                {% elseif out_of_range == false %}
+                    <select class="flex" data-paginator="{{ name }}">
+                        {% for i in range(1, paginator.total_pages + 1) %}
+                            <option {{ "selected" if i == paginator.page else "" }} value="{{ i }}">{{ 'Page ' ~ i }}</option>
+                        {% endfor %}
+                    </select>
+                    {% set out_of_range = true %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {{ next("?page=" ~ (paginator.page + 1) ~ query_params, paginator.page == paginator.total_pages) }}
+    {% endif %}
+{% endmacro %}

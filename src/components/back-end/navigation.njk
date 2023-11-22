@@ -1,0 +1,52 @@
+{% set menu_entries = [
+    {
+        link: admin_url ~ "/articles",
+        name: "Articles",
+        key: "articles"
+    },
+    {
+        link: admin_url ~ "/saes",
+        name: "SAÉS",
+        key: "saes"
+    },
+    {
+        link: admin_url ~ "/messages",
+        name: "Messages",
+        key: "messages"
+    },
+    {
+        link: admin_url ~ "/authors",
+        name: "Auteurs",
+        key: "authors"
+    },
+    {
+        link: admin_url ~ "/divers",
+        name: "Divers",
+        key: "divers"
+    },
+    {
+        link: base_url,
+        name: "Accéder au site",
+        key: "site"
+    }
+] %}
+
+<aside class="self-start w-full lg:w-fit bg-white rounded-2xl flex-initial shadow-md static lg:sticky top-5">
+    <header>
+        <a href="{{ admin_url }}" class="text-center block px-14 pt-6 pb-4 text-xl font-bold bg-gradient-to-b from-indigo-900 to-slate-900 bg-clip-text text-transparent">Administration</a>
+    </header>
+    <hr class="h-px">
+
+    <ul class="flex flex-col pl-0 mb-0">
+        {% for item in menu_entries %}
+            <li class="mt-0.5 w-full border-t-2">
+                <a 
+                    href="{{ item.link }}" 
+                    class="{{ 'border-t-2 border-slate-100 border-solid' if loop.last else "" }} {{ 'bg-indigo-50' if (page_name == item.key) else "" }} px-4 py-3 rounded-lg flex items-center my-1 mx-2 text-base hover:bg-indigo-100"
+                >
+                    {{ item.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</aside>

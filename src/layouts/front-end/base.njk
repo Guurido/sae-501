@@ -1,0 +1,34 @@
+{% set bubble_color = "rouge" %}
+
+<!DOCTYPE html>
+<html lang="fr" class="bg-neutral-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TITRE MANQUANT !{% endblock %} - SAÉ 501</title>
+
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/fonts.css">
+    {% if NODE_ENV != "development" %}
+        <link rel="stylesheet" href="/{{ manifest['style.css'].file }}" />
+    {% endif %}
+
+    {% block styles %}{% endblock %}
+    {% block javascript %}{% endblock %}
+
+    {% if NODE_ENV == "development" %}
+        <script type="module" src="http://{{ HOST_IP }}:5173/@vite/client"></script>
+        <script type="module" src="http://{{ HOST_IP }}:5173/src/scripts/main.frontend.js" defer></script>
+    {% else %}
+        <script type="module" src="/{{ manifest['src/scripts/main.frontend.js'].file }}" defer></script>
+    {% endif %}
+</head>
+<body class="px-4">
+    {% include "components/front-end/navigation.njk" %} 
+    {% include "components/front-end/hero.njk" %}
+
+    <main class="max-w-[1280px] mx-auto">
+    {% block main %}{% endblock %}
+    </main>
+</body>
+</html>

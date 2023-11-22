@@ -1,0 +1,46 @@
+{% extends "layouts/front-end/base.njk" %}
+
+{% block main %}
+    <h1 class="text-3xl font-bold mb-4">Articles sur le BUT MMI</h1>
+    <section class="flex justify-between flex-col-reverse lg:flex-row sm:gap-x-10 gap-y-6">
+        <ul>
+            <li class="w-full mb-6 shadow hover:shadow-xl lg:max-w-[750px]">
+                <a class="block" href="">
+                    <figure>
+                        <img class="w-full" src="https://danyellow.net/saes/203/ressources/images/image-article.png" alt="">
+                    </figure>
+                    <section class="p-8 pb-14">
+                        <p class="text-2xl font-bold">Hello</p>
+                        <p>You have to give the section a height to limit it to cause the buttons to wrap, otherwise the flex element will just grow to fit the height of whatever's inside of it.</p>
+                    </section>
+                </a>
+            </li>
+            <li class="w-full mb-6 shadow hover:shadow-xl lg:max-w-[750px]">
+                <a class="block" href="">
+                    <figure>
+                        <img class="w-full" src="https://danyellow.net/saes/203/ressources/images/image-article.png" alt="">
+                    </figure>
+                    <section class="p-8 pb-14">
+                        <p class="text-2xl font-bold">Hello</p>
+                        <p>You have to give the section a height to limit it to cause the buttons to wrap, otherwise the flex element will just grow to fit the height of whatever's inside of it.</p>
+                    </section>
+                </a>
+            </li>
+        </ul>
+        <a class="jpo-banniere flex-1 basis-80" href="https://www.cyu.fr/formation/construire-son-projet/salons-journee-portes-ouvertes" title="Ouverture dans un nouvel onglet">
+            <figure class="logo">
+                <img src="/images/logo-cyu-blanc.png" width="200" alt="">
+            </figure>
+
+            <section class="textes">
+                <p class="text-2xl">Journée portes ouvertes</p>
+                <p class="text-4xl mb-3">
+                    12/02/2023,
+                    <br>
+                    de 10h à 17h
+                </p>
+                <p class="en-savoir-plus">EN SAVOIR PLUS</p>
+            </section>
+        </a>
+    </section>
+{% endblock %}

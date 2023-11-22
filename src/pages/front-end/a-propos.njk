@@ -1,0 +1,92 @@
+{% extends "layouts/front-end/base.njk" %}
+
+{% block title %}A propos
+{% endblock %}
+
+{% set list_anchors = [
+    {
+        name: "Présentation",
+        hash: "presentation"
+    },
+    {
+        name: "SAÉ",
+        hash: "sae"
+    },
+    {
+        name: "Exemples de SAÉ",
+        hash: "exemples"
+    }
+] %}
+
+{% block main %}
+    <ul class="flex justify-center gap-x-4 bg-neutral-50 my-9 sm:flex-row flex-col gap-y-3">
+        {% for item in list_anchors %}
+            <li>
+                <a href="#{{ item.hash }}" class="text-xl text-[#005A47] hover:text-black">{{ item.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p class="my-4" id="{{ list_anchors[0].hash }}">
+        Le BUT métiers du multimédia et de l'internet (MMI) remplace le DUT MMI à partir de la rentrée 2021, auparavant appelé DUT SRC (services et réseaux de communication) jusqu'en mai 2013, qui était lancé à la rentrée universitaire 1994 par les IUT de Vélizy, Marne-la-Vallée, Saint-Raphaël et Verdun. Ce BUT offre une alternative aux anciens diplômes Bac+3, tels que la licence professionnelle en activités et techniques de communication et la licence professionnelle en systèmes informatiques et logiciels.
+    </p>
+
+    <p class="my-4">
+        Lorsque cette formation était proposée sous la forme d'un Diplôme Universitaire Technologique (DUT), elle se déroulait sur deux années (1 800 heures). En théorie, elle est accessible à tous les bacheliers, quelle que soit leur série. En moyenne, il y a de 30 à 35 heures de cours par semaine. Cette formation se divise en trois grands pôles, auxquels il faut ajouter le projet tutoré (300 heures) et les stages (420 heures). Les trois grands axes sont les suivants :
+    </p>
+
+    <ul class="list-disc list-inside">
+        <li>La culture contemporaine et langues étrangères (500 heures)</li>
+        <li>La culture scientifique et technique (700 heures)</li>
+        <li>La culture communicationnelle (600 heures)</li>
+    </ul>
+
+    <figure class="my-4">
+        <img src="images/img-quebec.jpg" alt="">
+    </figure>
+
+    <p class="my-4">
+        A CY Cergy Paris Université, il est donné la possibilité aux étudiants de passer un semestre au Québec à l'Université du Québec à Chicoutimi (UQAC) dans une formation dont le contenu est proche de celui proposé à l'IUT. Il est également possible d'effectuer ce semestre après avoir été diplômé.
+        <span class="font-bold">Attention : les cours sont dispensés en langue française.</span>
+    </p>
+
+    <h1 class="text-3xl font-bold mt-12 target:text-[#005A47]" id="{{ list_anchors[1].hash }}">
+        <a href="#{{ list_anchors[1].hash }}" class="before:content-['#'] before:absolute before:right-[100%] before:top-[50%] before:-translate-y-2/4 before:invisible hover:before:visible relative">
+            Situation d'Apprentissage et d'Évaluation
+        </a>
+    </h1>
+
+    <p class="my-4">Dans l’optique de préparer au mieux les étudiants à leur future vie professionnelle, les étudiants sont regroupés en agences de communication de 3 à 7 personnes dans des projets appelés "SAÉ" ou Situation d'Apprentissage et d'Évaluation. Ces agences ont pour but d’encourager le travail d’équipe dans un cadre reprenant l'environnement du travail en entreprise.</p>
+
+    <p class="my-4">
+        La situation d'apprentissage et d'évaluation ou simplement SAÉ est la situation didactique que privilégie, au Québec, le Ministère de l'Éducation, Enseignement supérieur et Recherche (MEESR) par le biais du Programme de formation de l'école québécoise (PFEQ). Une SAÉ se définit comme un ensemble constitué d’une ou plusieurs tâches à réaliser par l’élève en vue d’atteindre le but fixé. Elle permet : à l’élève, de développer et d’exercer une ou plusieurs compétences disciplinaires et transversales; à l’enseignant, d’assurer le suivi du développement des compétences dans une perspective d’aide à l’apprentissage. Elle est donc centrée sur l'élève et préconise une approche constructiviste ou socioconstructiviste à l'école.
+    </p>
+
+    <p class="my-4">
+        Les SAÉ sont une nouveauté des diplômes BUT,
+        <span class="font-bold">elles visent à remplacer les Devoirs Sur Table et les notes à terme,</span>
+        en proposant une approche plus "ingénieure" de la scolarité avec des étudiants qui apprennent à résoudre des problèmes et non plus apprendre par cœur leurs cours.
+    </p>
+
+    <h1 class="text-3xl font-bold mt-12 target:text-[#005A47]" id="{{ list_anchors[2].hash }}">
+        <a href="#{{ list_anchors[2].hash }}" class="before:content-['#'] before:absolute before:right-[100%] before:top-[50%] before:-translate-y-2/4 before:invisible hover:before:visible relative">
+            Exemples de projets réalisés en SAÉ
+        </a>
+    </h1>
+
+    <ul class="snap-x md:px-0 pb-2 grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-7 my-9 grid-flow-col auto-cols-[92%] grid-cols-none md:grid-flow-row overflow-x-auto md:overflow-x-visible">
+        {% for item in list_saes.data %}
+            <li class="h-full snap-start px-1">
+                <article class="shadow h-full">
+                    <figure class="h-[280px] sm:h-[325px]">
+                        <img class="h-full w-full object-cover" src="{{ 'images/default-sae-image.png' if item.image|length == 0 else 'uploads/' ~ item.image }}" alt="">
+                    </figure>
+                    <section class="p-8 pb-10 sm:pb-14">
+                        <p class="text-2xl font-bold pb-2">{{ item.title }}</p>
+                        <p>{{ item.content }}</p>
+                    </section>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

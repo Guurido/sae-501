@@ -1,0 +1,32 @@
+{% macro field(path, accepts=".jpg, .jpeg, .png", name = "image") %}
+<figure class="w-fit mb-2">
+    <img src="{{ path }}" data-original-image="{{ path }}" data-preview-upload="{{ name }}" width="250" alt="">
+</figure>
+<div class="flex flex-col sm:flex-row gap-y-4">
+    <div>
+        <input 
+            data-upload-file="{{ name }}"
+            type="file" 
+            accept="{{ accepts }}"
+            class="block w-full text-sm text-slate-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm
+                text-transparent
+                file:bg-sky-50 file:border-sky-500
+                hover:file:bg-sky-100
+            "
+            name="{{ name }}"
+        />
+        <span class="mt-1 text-sm text-slate-500" id="file_input_help">{{ accepts }} (taille max. 800kB).</span>
+    </div>
+
+    <button 
+        type="button" 
+        class="text-sm self-start rounded-full block py-2 px-4 border-sky-500 text-slate-700 bg-blue-50 hover:bg-sky-100" 
+        data-clipboard-upload="{{ name }}"
+    >
+        Coller depuis le presse-papier
+    </button>
+</div>
+{% endmacro %}
