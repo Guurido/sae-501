@@ -31,9 +31,20 @@
                 {% if is_success == true %}
                     <p class="rounded-lg p-3 bg-green-100 text-green-800 border-solid border-x border-y border-green-700 mb-3">Element mis à jour</p>
                 {% endif %}
+
+				<label class="block mb-4">
+					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Actif ?</span>
+					<input class="block ml-2" type="checkbox" name="is_active" {% if article.is_active %}checked{% endif %}/>
+				</label>
+
 				<label class="block mb-4">
 					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Titre</span>
 					<input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="title" value="{{ article.title }}"/>
+				</label>
+
+				<label class="block mb-4">
+					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Chapô</span>
+					<input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="abstract" value="{{ article.abstract }}"/>
 				</label>
 
 				<label class="block mb-4 w-fit">
@@ -44,6 +55,16 @@
 				<label class="block mb-4">
 					<span class="font-bold text-slate-700">Contenu</span>
 					<textarea name="content" cols="15" rows="5" class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">{{ article.content }}</textarea>
+				</label>
+
+ 				<label class="block mb-4">
+					<span class="font-bold text-slate-700 after:ml-0.5 after:text-red-500">Lien YouTube</span>
+					<input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="youtubeId" value="{{ article.youtubeId }}"/>
+				</label>
+
+				<label class="block mb-4">
+					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Auteur</span>
+					<input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="author" value="{{ article.author }}"/>
 				</label>
 
 				<button class="mt-3 px-4 py-2 font-semibold text-sm bg-cyan-500 hover:bg-cyan-600 text-white rounded-2xl shadow-sm" type="submit">Sauvegarder</button>
