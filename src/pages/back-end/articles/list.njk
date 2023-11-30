@@ -1,5 +1,6 @@
 {% extends "layouts/back-end/base.njk" %}
 {% set page_name = "articles" %}
+{% block title %}Articles{% endblock %}
 
 {% import "components/back-end/pagination.njk" as pagination with context %}
 
@@ -22,6 +23,7 @@
                     <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Activé ?</th>
                     <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Dernière mise à jour</th>
                     <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Auteur</th>
+                    <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Image</th>
                     <th class="pl-8 border-solid border-slate-200 border-b pb-5"></th>
                     <th class="pl-8 border-solid border-slate-200 border-b pb-5"></th>
                 </tr>
@@ -39,6 +41,7 @@
                         <td class="bg-transparent border-solid border-slate-200 border-b p-4 pl-8" data-label="Activé ?">{{ "Oui" if item.is_active else "Non" }}</td>
                         <td class="bg-transparent border-solid border-slate-200 border-b p-4 pl-8" data-label="Dernière mise à jour">{{ item.updated_at|date("DD/M/YYYY à HH:mm") }}</td>
                         <td class="bg-transparent border-solid border-slate-200 border-b p-4 pl-8" data-label="Auteur">{{ item.author.firstname }} {{ item.author.lastname }}</td>
+                        <td class="bg-transparent border-solid border-slate-200 border-b p-4 pl-8" data-label="Image"><img src="{{ item.image }}" alt="Image"></td>
                         <td class="p-4 pl-8 bg-transparent border-solid border-slate-200 border-b shadow-transparent"><a href="{{ admin_url ~ '/articles/' ~ item._id }}" class="text-blue-500 hover:text-blue-900 block sm:inline-block w-full text-left sm:w-fit">Editer</a></td>
                         <td class="p-4 pl-8 bg-transparent border-solid border-slate-200 border-b shadow-transparent">
                             <button type="button" class="text-red-600 block sm:inline-block w-full text-left sm:w-fit" data-item-data='{{ item|dump|e }}' data-delete-url="{{ base_url ~ "/api/articles/" ~ item._id }}">Supprimer</button>
