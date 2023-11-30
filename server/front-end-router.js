@@ -96,7 +96,7 @@ router.get("/medias(.html)?", async (_req, res) => {
     } catch (e) {}
 
     res.render("pages/front-end/medias.njk", {
-        // list_saes: result.data,
+        // list_medias: result.data,
         // Mettre contenu media à la place de list sae
     });
 });
@@ -113,7 +113,7 @@ router.get("/contact(.html)?", async (_req, res) => {
     } catch (e) {}
 
     res.render("pages/front-end/contact.njk", {
-        // list_saes: result.data,
+        // list_contact: result.data,
         // Mettre contenu contact à la place de list sae
     });
 });
