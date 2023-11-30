@@ -229,7 +229,7 @@ router.post(`/${base}`, upload.single("image"), async (req, res) => {
             errors: [
                 ...listErrors, 
                 ...deleteUpload(targetPath), 
-                ...Object.values(err?.errors).map((val) => val.message)
+                ...Object.values(err?.errors || [{'message': "Il y a eu un problème"}]).map((val) => val.message)
             ]
         })
     }
