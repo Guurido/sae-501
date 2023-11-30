@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 
-const messageSchema = new Schema({
+const messageSchem = new Schema({
     lastname: {
         type: String,
         required: [true, "Nom de famille requis"]
