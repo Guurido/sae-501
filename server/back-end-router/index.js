@@ -10,6 +10,8 @@ import SAE from "#models/sae.js";
 // Routers
 import SAERouter from './sae.js'
 import ArticleRouter from './article.js'
+import AuthorRouter from './author.js'
+//import MessageRouter from './message.js'
 
 const router = express.Router();
 
@@ -45,6 +47,8 @@ router.use(async (_req, res, next) => {
 
 router.use(SAERouter)
 router.use(ArticleRouter)
+router.use(AuthorRouter)
+//router.use(MessageRouter)
 
 router.get("/", async (_req, res) => {
     const queryParams = querystring.stringify({ per_page: 5 });
