@@ -15,10 +15,7 @@ const messageSchema = new Schema({
         required: [true, "E-mail requis"],
         validate: [validator.isEmail, "E-mail non valide"]
     },
-    content: {
-        type: String,
-        required: [true, "Message requis"]
-    },
+    content: String,
     type: {
         type: String,
         enum: ["non_précise", "autre", "etudiant", "parent"],
