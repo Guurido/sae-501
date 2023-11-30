@@ -1,6 +1,5 @@
 {% extends "layouts/back-end/base.njk" %}
 
-{% set chars_limit = 200 %}
 {% set page_name = "articles" %}
 
 {% import "components/back-end/input-file.njk" as input_file %}
@@ -48,11 +47,11 @@
 				</label>
 
 				<label class="block mb-4 w-fit">
-					<span class="font-bold text-slate-700 after:ml-0.5 after:text-red-500">Image</span>
+					<span class="font-bold text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500">Image</span>
                     {{ input_file.field('/uploads/' ~ article.image if article.image else null, ".jpg, .jpeg, .png") }}
 				</label>
 
-				<label class="block mb-4">
+				<label class="block mb-4 ">
 					<span class="font-bold text-slate-700">Contenu</span>
 					<textarea name="content" cols="15" rows="5" class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">{{ article.content }}</textarea>
 				</label>
