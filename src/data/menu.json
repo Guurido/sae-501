@@ -17,6 +17,10 @@
             "link": "medias.html"
         },
         {
+            "name": "AUTEURS",
+            "link": "author.html"
+        },
+        {
             "name": "CONTACT",
             "link": "contact.html"
         }
