@@ -84,7 +84,19 @@ router.get("/lieux-de-vie(.html)?", async (_req, res) => {
     });
 });
 
-router.get("/medias(.html)?", async (_req, res) => {
+router.get("/author(.html)?", async (_req, res) => {
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
+
+    res.render("pages/front-end/author.njk", {
+        // list_medias: result.data,
+        // Mettre contenu media à la place de list sae
+    });
+});
+
+router.get("/a-propos(.html)?", async (_req, res) => {
     let options = {
         method: "GET",
         url: `${res.locals.base_url}/api/saes?per_page=9`,
@@ -95,11 +107,11 @@ router.get("/medias(.html)?", async (_req, res) => {
         result = await axios(options);
     } catch (e) {}
 
-    res.render("pages/front-end/medias.njk", {
-        // list_medias: result.data,
-        // Mettre contenu media à la place de list sae
+    res.render("pages/front-end/a-propos.njk", {
+        list_saes: result.data,
     });
 });
+
 
 router.get("/contact(.html)?", async (_req, res) => {
     let options = {
