@@ -2,3 +2,32 @@
 {% set bubble_color = "gris" %}
 
 {% block title %}Contact{% endblock %}
+
+{% block main %}
+
+    <h1>Contact Form</h1>
+    <form action="/submit" method="post">
+        <label for="lastname">Nom de famille:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <label for="firstname">Prénom:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="content">Contenu:</label>
+        <textarea id="content" name="content"></textarea>
+
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option value="non_précise" selected>Non Précisé</option>
+            <option value="autre">Autre</option>
+            <option value="etudiant">Étudiant</option>
+            <option value="parent">Parent</option>
+        </select>
+
+        <button type="submit">Envoyer</button>
+    </form>
+    
+{% endblock %}
