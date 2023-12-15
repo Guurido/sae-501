@@ -1,0 +1,43 @@
+.conteneur-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+
+.liens{
+    display: inline;
+}
+
+.all{
+    margin-left: 10px;
+}
+
+.hyperliens{
+    display: inline-flex;
+}
+
+.spe{
+    margin-right: 10px;
+    font-size: 16px;
+    color: #707070;
+}
+
+.lien{
+    margin-right: 10px;
+    text-decoration: underline;
+    color: #0066FF;
+    font-size: 16px;
+}
+
+.txt{
+    color: #707070;
+    font-size: 16px;
+}
+
+.trait{ 
+    border: revert;
+    color: #707070;
+    border-top-width: 73px;
+    margin-left: 10px;
+}
