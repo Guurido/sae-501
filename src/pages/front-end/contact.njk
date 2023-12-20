@@ -1,12 +1,18 @@
 {% extends "layouts/front-end/base.njk" %}
 {% set bubble_color = "gris" %}
 
+
+{% block styles %}
+    <link rel="stylesheet" href="../styles/contact.css">
+{% endblock %}
+
 {% block title %}Contact{% endblock %}
 
 {% block main %}
 
-    <h1>Contact Form</h1>
-    <form action="/submit" method="post">
+<h1>Formulaire de contact</h1>
+<div class="form">
+    <form action="/submit" method="post" class="formConact">
         <label for="lastname">Nom de famille:</label>
         <input type="text" id="lastname" name="lastname" required>
 
@@ -29,5 +35,6 @@
 
         <button type="submit">Envoyer</button>
     </form>
+</div>
     
 {% endblock %}
