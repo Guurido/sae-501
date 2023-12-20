@@ -1,16 +1,13 @@
-/* Apply general styles to the form */
 .formContact {
     max-width: 400px;
     margin: 0 auto;
 }
 
-/* Style labels */
 label {
     display: block;
     margin-bottom: 8px;
 }
 
-/* Style input fields */
 input,
 textarea,
 select {
@@ -20,7 +17,6 @@ select {
     box-sizing: border-box;
 }
 
-/* Style the submit button */
 button {
     background-color: #3498db;
     color: #fff;
@@ -29,7 +25,6 @@ button {
     cursor: pointer;
 }
 
-/* Style the form container */
 .form {
     background-color: #f9f9f9;
     padding: 20px;
