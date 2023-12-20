@@ -15,10 +15,10 @@ const getComments = async () => {
     for (const comment of resJson.list_comments) {
         const tpl = tplListItemRaw.content.cloneNode(true)
         tpl.querySelector("p.titre").textContent = comment.content
-        tpl.querySelector("P.titre").classList.add("hello")
+        tpl.querySelector("P.paragraphe").textContent = luxon.DateTime.fromISO(comment.created_at).toFormat("dd/LL/yyyy")
 
-        listContainer.append(tpl)
     }
+    listContainer.append(tpl)
 }
 
 getComments()
