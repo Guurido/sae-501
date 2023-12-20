@@ -1,3 +1,11 @@
+const listContainer = document.querySelector("[data-list]")
+const tplListItemRaw = document.querySelector("[data-tpl='list-item']")
+
+const articleId = "655fe155c5bb1e62ce77f0f9"
+const commentsApiUrl = 'http://192.168.0.147:9000/api/articles/${articleId}/comments'
+
+
+
 const getComments = async () => {
     const res = await fetch(commentsApiUrl);
     const resJon = await res.json()
