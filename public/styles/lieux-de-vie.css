@@ -1,0 +1,25 @@
+.paragraphe {
+    margin-bottom: 40px;
+}
+
+.titre{
+    font-weight: bold;
+    font-size: 22px;
+    color: #0066FF;
+}
+
+.imgPres{
+    height: 400px;
+    width: 680px;
+    max-width: 100%;
+    display: block;
+    margin-top: 15px;
+}
+
+.pres{
+    margin-bottom: 15px;
+}
+
+.bold{
+    font-weight: bold;
+}

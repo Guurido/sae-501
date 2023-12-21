@@ -1,40 +1,46 @@
 {% extends "layouts/front-end/base.njk" %}
 {% set bubble_color = "vert" %}
 
+{% block styles %}
+<link rel="stylesheet" href="/styles/lieux-de-vie.css">
+{% endblock %}
+
 {% block title %}Lieux de vie{% endblock %}
 
 {% block main %}
 
-    <section>
-        <h1>Lieux de vie</h1>
-        <p>Entre les cours, l'université et ses IUT proposent de nombreux lieux de convivialité ou d'idéation. Divers et variés, 
+    <sectio class="paragraphe">
+        <h1 class="titre">Lieux de vie</h1>
+        <p class="pres">Entre les cours, l'université et ses IUT proposent de nombreux lieux de convivialité ou d'idéation. Divers et variés, 
             ils permettent aux étudiants, de toute formation, de découvrir de nouveaux horizons et surtout de rencontrer les étudiants d'autres BUT.</p>
     </section>
 
     <section>
-        <h2>Bibliothèque universitaire</h2>
-        <p>La bibliothèque universitaire est un atout indispensable à votre réussite. 
+        <h2 class="titre">Bibliothèque universitaire</h2>
+        <p class="pres">La bibliothèque universitaire est un atout indispensable à votre réussite. 
             Elle met à votre disposition des collections (livres, revues, ressources numériques accessibles sur place et à distance) 
             ainsi que des postes informatiques et des espaces de travail.</p>
 
-        <img src="" alt="Image1">
+        <img src="/images/BU-CYU.jpg" alt="Bibliothèque Universitaire" class="imgPres">
     </section>
 
-    <section>
-        <h2>Se restaurer</h2>
-        <p>Les restaurants du CROUS vous permettent de déjeuner pour un tarif social fixé au plus à 3,30 €. Pour bénéficier de ce tarif, il vous suffit de présenter votre carte d'étudiant multiservices.</p>
-        <p><strong>Si vous êtes étudiant boursier, vous bénéficiez automatiquement, lors de votre passage en caisse, du tarif de 1 € pour un repas complet.</strong></p>
+    <section class="paragraphe">
+        <h2 class="titre">Se restaurer</h2>
+        <p class="pres">
+            Les restaurants du CROUS vous permettent de déjeuner pour un tarif social fixé au plus à 3,30 €. Pour bénéficier de ce tarif, il vous suffit de présenter votre carte d'étudiant multiservices. <br>
+            <span class="bold">Si vous êtes étudiant boursier, vous bénéficiez automatiquement, lors de votre passage en caisse, du tarif de 1 € pour un repas complet.</span>
+        </p>
 
-        <img src="" alt="Image2">
+        <img src="/images/se-restaurer.jpg" alt="Cantine" class="imgPres">
     </section>
 
-    <section>
-        <h2>Réseau des fablabs de CY Cergy Paris Université</h2>
-        <p>Intégré au Centre d'appui aux enseignements, 
+    <section class="paragraphe">
+        <h2 class="titre">Réseau des fablabs de CY Cergy Paris Université</h2>
+        <p class="pres">Intégré au Centre d'appui aux enseignements, 
             le réseau des fablabs de CY Cergy Paris Université comprend le fablab LabBoite de Cergy (Grand centre) et le Fablab de Gennevilliers (site de l'université). 
             Ce réseau permet d'expérimenter, tester et échanger dans des lieux collaboratifs, accueillants et ouverts à toutes et tous.</p>
 
-        <img src="" alt="Image3">
+        <img src="/images/Fablab.jpg" alt="Réseau Fablab" class="imgPres">
     </section>
 
 {% endblock %}
