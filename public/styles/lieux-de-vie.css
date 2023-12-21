@@ -1,25 +1,48 @@
-.paragraphe {
+/* Style de base pour toutes les sections */
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: 40px;
 }
 
-.titre{
+/* Inverser l'ordre des sections impaires */
+section:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+/* Style pour le conteneur du texte à l'intérieur de la section */
+.text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/* Style pour le titre */
+.titre {
     font-weight: bold;
     font-size: 22px;
     color: #0066FF;
 }
 
-.imgPres{
+/* Style pour le corps du texte */
+.pres {
+    margin-bottom: 15px;
+}
+
+/* Style pour l'image */
+.imgPres {
     height: 400px;
     width: 680px;
     max-width: 100%;
     display: block;
-    margin-top: 15px;
+    margin-top: 15px; /* Ajustez la marge selon vos préférences */
+    margin-left: 15px; /* Ajout de marge à gauche de l'image */
+    margin-right: 15px; /* Ajout de marge à droite de l'image */
 }
 
-.pres{
-    margin-bottom: 15px;
-}
 
-.bold{
+.bold {
     font-weight: bold;
 }
