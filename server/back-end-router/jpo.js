@@ -5,10 +5,10 @@ import querystring from "querystring";
 
 import upload from "../uploader.js";
 
-const base = "authors";
+const base = "jpo";
 const router = express.Router();
 
-// Get multiple authors
+// Get multiple jpo
 router.get(`/${base}`, async (req, res) => {
     const queryParams = querystring.stringify(req.query);
     let options = {
@@ -20,12 +20,12 @@ router.get(`/${base}`, async (req, res) => {
         result = await axios(options);
     } catch (e) {}
     
-    res.render("pages/back-end/authors/list.njk", {
+    res.render("pages/back-end/jpo/list.njk", {
         list_authors: result.data,
     });
 });
 
-// Get or create author
+// Get or create jpo
 router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
     let options = {
         method: "GET",
@@ -52,7 +52,7 @@ router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
     });
 });
 
-// Create or update author 
+// Create or update jpo 
 router.post(`/${base}/:id`, upload.single("image"), async (req, res) => {
     let ressource = null;
     const isEdit = mongoose.Types.ObjectId.isValid(req.params.id)
