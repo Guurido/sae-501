@@ -77,6 +77,12 @@ router.get("/a-propos(.html)?", async (_req, res) => {
     });
 });
 
+router.get("/sur-les-medias(.html)?", async (_req, res) => {
+    res.render("pages/front-end/sur-les-medias.njk", {
+        //list_saes: result.data,
+    });
+});
+
 
 router.get("/contact(.html)?", async (_req, res) => {
     res.render("pages/front-end/contact.njk", {

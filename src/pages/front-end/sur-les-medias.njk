@@ -1,0 +1,36 @@
+{% extends "layouts/front-end/base.njk" %}
+{% set bubble_color = "rouge" %}
+
+{% block title %}Sur les médias{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/sur-les-medias.css">
+{% endblock %}
+
+
+
+{% block main %}
+    <div class="head">
+        <h1 class="title">Les actualités et les évènement importants du BUT et de l'IUT CY Paris Université dans les médias</h1>
+    </div>
+
+    <section class="videos">
+        <div class="conteneur-video">
+            <p class="txt-video">La nouvelle réforme : Le BUT MMI</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oiEbQF7qfBU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video"></iframe>
+        </div>
+        <div class="conteneur-video">
+            <p class="txt-video">Pourquoi étudier à l'IUT CYU ?</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/SyjF4h2Zb7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video"></iframe>
+        </div>
+        <div class="conteneur-video">
+            <p class="txt-video">Job interview en anglais au département MMI</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/t72pdxpNjyc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video"></iframe>
+        </div>
+        <div class="conteneur-video">
+            <p class="txt-video">L'importance de l'IUT dans les études supérieures</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xD4wshE0hEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video"></iframe>
+        </div>       
+    </section>
+
+{% endblock %}
