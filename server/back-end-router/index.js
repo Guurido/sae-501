@@ -11,6 +11,7 @@ import SAE from "#models/sae.js";
 import SAERouter from './sae.js'
 import ArticleRouter from './article.js'
 import AuthorRouter from './author.js'
+//import JpoRouter from './jpo.js'
 //import MessageRouter from './message.js'
 
 const router = express.Router();
@@ -48,6 +49,7 @@ router.use(async (_req, res, next) => {
 router.use(SAERouter)
 router.use(ArticleRouter)
 router.use(AuthorRouter)
+//router.use(JpoRouter)
 //router.use(MessageRouter)
 
 router.get("/", async (_req, res) => {
