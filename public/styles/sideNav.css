@@ -1,0 +1,12 @@
+.burger-menu {
+    display: none;
+}
+
+@media only screen and (max-width: 900px) {
+    .burger-menu {
+        display: block;
+    }
+    .navigation {
+        display: none;
+    }
+}
