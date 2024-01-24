@@ -1,3 +1,15 @@
 {% extends "layouts/front-end/base.njk" %}
 {% block title %}Auteurs{% endblock %}
 {% set bubble_color = "gris" %}
+
+{% block main %}
+<h1 class="text-3xl font-bold mb-4">Auteurs</h1>
+<section>
+    {% for item in list_authors.data %}
+    <h2>{{ item.lastname }} {{ item.firstname }}</h2>
+    <img src="{{ item.image }}" alt="photo de {{ item.firstname }}">
+    <p>{{ item.mail }}</p>
+    <p>{{ item.bio }}</p>
+    {% endfor %}
+</section>
+{% endblock %}

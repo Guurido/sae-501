@@ -65,8 +65,18 @@ router.get("/lieux-de-vie(.html)?", async (_req, res) => {
 });
 
 router.get("/author(.html)?", async (_req, res) => {
+    let options = {
+        method: "GET",
+        url: `${res.locals.base_url}/api/authors`,
+    };
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
+
+    
     res.render("pages/front-end/author.njk", {
-        // list_medias: result.data,
+        list_authors: result.data,
         // Mettre contenu media à la place de list sae
     });
 });
