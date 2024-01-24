@@ -66,7 +66,7 @@ router.post(`/${base}/:id`, upload.single("image"), async (req, res) => {
             file: req.file,
         },
     }
-
+    console.log(req.body)
     if(isEdit) {
         options = {
             ...options,

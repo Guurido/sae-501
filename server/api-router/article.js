@@ -7,6 +7,7 @@ import Author from '#models/author.js';
 
 import upload, { uploadImage, deleteUpload } from "../uploader.js"
 import mongoose from "mongoose";
+import { nextTick } from "process";
 
 const router = express.Router();
 
@@ -320,6 +321,10 @@ router.put(`/${base}/:id`, upload.single("image"), async (req, res) => {
 
     try {
         let ressource = await Article.findById(req.params.id)
+        const newPayload = {...req.body, ...imagePayload};
+        Object.entries(newPayload).forEach(([key, value]) => {
+            ressource[key] = value;
+        })
         
         if(Object.keys(imagePayload).length) {
             ressource.image = imagePayload.image
