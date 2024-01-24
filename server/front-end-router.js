@@ -85,16 +85,8 @@ router.get("/author(.html)?", async (_req, res) => {
 });
 
 router.get("/sur-les-medias(.html)?", async (_req, res) => {
-    let options = {
-        method: "GET",
-        url: `${res.locals.base_url}/api/divers`,
-    };
-    let result = null;
-    try {
-        result = await axios(options);
-    } catch (e) {}
     res.render("pages/front-end/sur-les-medias.njk", {
-        list_divers: result.data,
+        // list_divers: result.data,
     });
 });
 
