@@ -79,8 +79,6 @@ router.get("/author(.html)?", async (_req, res) => {
     try {
         result = await axios(options);
     } catch (e) {}
-<<<<<<< HEAD
-
     
     res.render("pages/front-end/author.njk", {
         list_authors: result.data,
@@ -91,10 +89,6 @@ router.get("/author(.html)?", async (_req, res) => {
 router.get("/a-propos(.html)?", async (_req, res) => {
     res.render("pages/front-end/a-propos.njk", {
         //list_saes: result.data,
-=======
-    res.render("pages/front-end/author.njk", {
-        list_authors: result.data,
->>>>>>> 815a4b70eb671cc60dc77db356d95f18354d5b53
     });
 });
 
