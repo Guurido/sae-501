@@ -52,15 +52,21 @@ router.get("/", async (req, res) => {
 
 // "(.html)?" makes ".html" optional
 router.get("/a-propos(.html)?", async (_req, res) => {
+    let options = {
+        method: "GET",
+        url: `${res.locals.base_url}/api/saes`,
+    };
+    let result = null;
+    try {
+        result = await axios(options);
+    } catch (e) {}
     res.render("pages/front-end/a-propos.njk", {
-        //list_saes: result.data,
+        list_saes: result.data,
     });
 });
 
 router.get("/lieux-de-vie(.html)?", async (_req, res) => {
     res.render("pages/front-end/lieux-de-vie.njk", {
-        // list_saes: result.data,
-        // Mettre contenu lieu de vie à la place de list sae
     });
 });
 
@@ -73,6 +79,7 @@ router.get("/author(.html)?", async (_req, res) => {
     try {
         result = await axios(options);
     } catch (e) {}
+<<<<<<< HEAD
 
     
     res.render("pages/front-end/author.njk", {
@@ -84,20 +91,23 @@ router.get("/author(.html)?", async (_req, res) => {
 router.get("/a-propos(.html)?", async (_req, res) => {
     res.render("pages/front-end/a-propos.njk", {
         //list_saes: result.data,
+=======
+    res.render("pages/front-end/author.njk", {
+        list_authors: result.data,
+>>>>>>> 815a4b70eb671cc60dc77db356d95f18354d5b53
     });
 });
 
 router.get("/sur-les-medias(.html)?", async (_req, res) => {
     res.render("pages/front-end/sur-les-medias.njk", {
-        //list_saes: result.data,
+        // list_divers: result.data,
     });
 });
 
 
 router.get("/contact(.html)?", async (_req, res) => {
     res.render("pages/front-end/contact.njk", {
-        // list_contact: result.data,
-        // Mettre contenu contact à la place de list sae
+        // list_messages: result.data,
     });
 });
 

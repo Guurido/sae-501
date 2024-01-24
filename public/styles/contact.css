@@ -3,6 +3,11 @@
     margin: 0 auto;
 }
 
+.title {
+    font-weight: bold;
+    font-size: 36px;
+}
+
 label {
     display: block;
     margin-bottom: 8px;
@@ -10,16 +15,18 @@ label {
 
 input,
 textarea,
-select {
+select,
+.btnsub {
     width: 100%;
     padding: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 20px; /* Ajustez la marge selon vos préférences */
     box-sizing: border-box;
 }
 
-.btn {
+.btnsub {
     margin-top: 15px;
-    background-color: #0066FF;
+    background-color: #0066FF !important;
+    color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -28,8 +35,8 @@ select {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #0066FF;
+.btnsub:hover {
+    background-color: #0050cc !important; /* Couleur plus foncée au survol */
 }
 
 .form {
