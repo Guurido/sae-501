@@ -1,17 +1,15 @@
 {
     "jpo": [
         {
-            "id": 1,
             "name": "Journées Portes Ouvertes MMI",
             "date": "2024-01-27"
         },
         {
-            "id": 2,
             "name": "Journées Portes Ouvertes TC",
             "date": "2024-01-20"
         },
         {
-            "id": 3,
+
             "name": "Journées Portes Ouvertes GEII",
             "date": "2024-01-27"
         }
