@@ -93,7 +93,7 @@ router.get("/sur-les-medias(.html)?", async (_req, res) => {
 
 router.get("/contact(.html)?", async (_req, res) => {
     res.render("pages/front-end/contact.njk", {
-        list_messages: result.data,
+        // list_messages: result.data,
     });
 });
 
