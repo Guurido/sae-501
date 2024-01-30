@@ -79,7 +79,6 @@ router.get("/author(.html)?", async (_req, res) => {
     try {
         result = await axios(options);
     } catch (e) {}
-
     
     res.render("pages/front-end/author.njk", {
         list_authors: result.data,

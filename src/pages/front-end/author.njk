@@ -4,12 +4,14 @@
 
 {% block main %}
 <h1 class="text-3xl font-bold mb-4">Auteurs</h1>
-<section>
+<section class="paragraphe">
     {% for item in list_authors.data %}
-    <h2>{{ item.lastname }} {{ item.firstname }}</h2>
-    <img src="{{ item.image }}" alt="photo de {{ item.firstname }}">
-    <p>{{ item.mail }}</p>
-    <p>{{ item.bio }}</p>
+    <div class="text-container">
+        <h2 class="titre">{{ item.lastname }} {{ item.firstname }}</h2>
+        <p class="pres">{{ item.mail }}</p>
+        <p class="pres">{{ item.bio }}</p>
+    </div>
+    <img src="{{ item.image }}" alt="photo de {{ item.firstname }}" class="imgPres">
     {% endfor %}
 </section>
 {% endblock %}
