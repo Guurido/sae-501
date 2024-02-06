@@ -27,22 +27,24 @@
 </div>
 
 <script>
-    var sidenav = document.getElementById("mySidenav");
-    var openBtn = document.getElementById("openBurger");
-    var closeBtn = document.getElementById("closeBtn");
+    const sidenav = document.getElementById("mySidenav");
+    const openBtn = document.getElementById("openBurger");
+    const closeBtn = document.getElementById("closeBtn");
 
     openBtn.onclick = openNav;
     closeBtn.onclick = closeNav;
 
     function openNav() {
-    sidenav.classList.add("active");
+        sidenav.classList.add("active");
     }
 
     function closeNav() {
-    sidenav.classList.remove("active");
+        sidenav.classList.remove("active");
+        openBtn.style.display = "block";
     }
 
     function closeNavByLinks() {
-    sidenav.classList.remove("active");
+        sidenav.classList.remove("active");
+        openBtn.style.display = "block";
     }
 </script>

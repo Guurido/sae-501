@@ -72,9 +72,7 @@
   }
 }
 
-// MENU BURGER
-
-/* SIDENAV MENU */
+// BURGER
 .sidenav {
   height: 100%;
   width: 250px;
@@ -128,36 +126,5 @@
   right: 20px;
   z-index: 1001;
 }
-
-@include mobile {
-  .navigation {
-    display: none;
-  }
-
-  .svgBurger {
-      display: flex !important;
-  }
-
-  .sidenav.active {
-    right: 0;
-  }
-
-  .sidenav a {
-    padding: 35px 0px 6px 63px;
-    text-decoration: none;
-    font-size: 1.563rem;
-    color: #ededed;
-    display: block;
-    transition: 0.3s;
-  }
-  .sidenav {
-    z-index: 9999;
-  }
-}
-
-
-
-
-/* FIN SIDENAV */
 
 // color: theme("colors.neutral.50");
