@@ -72,4 +72,59 @@
   }
 }
 
+// BURGER
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: -250px;
+  background-color: #202020;
+  opacity: 99%;
+  padding-top: 60px;
+  transition: right 0.5s ease;
+
+  a {
+    padding: 35px 0px 6px 63px;
+    text-decoration: none;
+    font-size: 1.563rem;
+    color: #ededed;
+    display: block;
+    transition: 0.3s;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &.active {
+    right: 0;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 2.25rem;
+    cursor: pointer;
+  }
+}
+
+.svgBurger {
+  font-size: 25px;
+  display: none;
+  font-weight: 900;
+  z-index: 9999;
+}
+
+.burger-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
 // color: theme("colors.neutral.50");
