@@ -86,12 +86,6 @@ router.get("/author(.html)?", async (_req, res) => {
     });
 });
 
-router.get("/a-propos(.html)?", async (_req, res) => {
-    res.render("pages/front-end/a-propos.njk", {
-        //list_saes: result.data,
-    });
-});
-
 router.get("/sur-les-medias(.html)?", async (_req, res) => {
     res.render("pages/front-end/sur-les-medias.njk", {
         // list_divers: result.data,
