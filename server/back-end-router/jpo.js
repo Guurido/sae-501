@@ -1,104 +1,49 @@
 import express from "express";
-import axios from "axios";
-import mongoose from "mongoose";
-import querystring from "querystring";
 
-import upload from "../uploader.js";
+import fs from "fs";
 
 const base = "jpo";
 const router = express.Router();
 
-// Get multiple jpo
-router.get(`/${base}`, async (req, res) => {
-    const queryParams = querystring.stringify(req.query);
-    let options = {
-        method: "GET",
-        url: `${res.locals.base_url}/api/${base}?${queryParams}`,
-    }
-    let result = null
-    try {
-        result = await axios(options);
-    } catch (e) {}
-    
-    res.render("pages/back-end/jpo/list.njk", {
-        list_authors: result.data,
-    });
-});
+// Chemin vers le fichier JSON
+const jsonFilePath = "./src/data/jpo.json";
 
 // Get or create jpo
-router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
-    let options = {
-        method: "GET",
-        url: `${res.locals.base_url}/api/${base}/${req.params.id}`,
-    }
-    const isEdit = mongoose.Types.ObjectId.isValid(req.params.id)
-
-    let result = null
-    let listErrors = []
-    
-    if(isEdit) {
-        try {
-            result = await axios(options);
-        } catch (e) {
-            listErrors = e.response.data.errors
-            result = {}
+router.get(`/${base}`, async (req, res) => {
+    fs.readFile(jsonFilePath, "utf8", (err, data) => {
+        if (err) {
+          console.error("Erreur lors de la lecture du fichier JSON:", err);
+          res.status(500).send("Erreur lors de la lecture du fichier JSON");
+          return;
         }
-    }
 
-    res.render("/", {
-        author: result?.data || {},
-        list_errors: listErrors,
-        is_edit: isEdit,
+    // Conversion des données en objet JavaScript
+    const jpoName = JSON.parse(data);
+    // Rendre une vue à partir d'un fichier HTML avec les données JSON
+    res.render("pages/back-end/jpo/list.njk", { 
+        jpoName
+    });
     });
 });
 
 // Create or update jpo 
-router.post(`/${base}/:id`, upload.single("image"), async (req, res) => {
-    let ressource = null;
-    const isEdit = mongoose.Types.ObjectId.isValid(req.params.id)
-    let listErrors = [];
-    let options = {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-        data: {
-            ...req.body,
-            file: req.file,
-        },
+router.post(`/${base}/:id`, async (req, res) => {
+    let jpo = {
+        date: req.body.name
     }
 
-    if(isEdit) {
-        options = {
-            ...options,
-            method: "PUT",
-            url: `${res.locals.base_url}/api/${base}/${req.params.id}`,
-        }
-    } else {
-        options = {
-            ...options,
-            method: "POST",
-            url: `${res.locals.base_url}/api/${base}`,
-        }
-    }
-    
     try {
-        const result = await axios(options);
-        ressource = result.data
-    } catch (e) {
-        listErrors = e.response.data.errors
-        ressource = e.response.data.ressource || {}
-    } finally {
-        if (listErrors.length || isEdit) {
-            res.render("", {
-                sae: ressource,
-                list_errors: listErrors,
-                is_edit: isEdit,
-                is_success: listErrors.length === 0
-            });
-        } else {
-            res.redirect(`${res.locals.admin_url}/${base}`);
-        }
-    }
+        fs.writeFile(jsonFilePath, JSON.stringify(jpo));
+        const jpoName = JSON.parse(data);
+        jpo.name = jpo.date;
+      } catch (err) {
+        console.log(err);
+      }
+
+    res.render("pages/back-end/jpo/add-edit.njk", {
+        jpoName,
+    });
 });
+
 
 export default router;
