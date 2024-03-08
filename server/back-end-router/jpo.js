@@ -9,7 +9,7 @@ const router = express.Router();
 const jsonFilePath = "./src/data/jpo.json";
 
 // Get or create jpo
-router.get(`/${base}`, async (req, res) => {
+router.get(`/${base}/`, async (req, res) => {
     fs.readFile(jsonFilePath, "utf8", (err, data) => {
         if (err) {
           console.error("Erreur lors de la lecture du fichier JSON:", err);
@@ -34,12 +34,12 @@ router.post(`/${base}/:id`, async (req, res) => {
 
     try {
         fs.writeFile(jsonFilePath, JSON.stringify(jpo));
-        const jpoName = JSON.parse(data);
         jpo.name = jpo.date;
       } catch (err) {
         console.log(err);
       }
-
+      
+    const jpoName = JSON.parse(data);
     res.render("pages/back-end/jpo/add-edit.njk", {
         jpoName,
     });
