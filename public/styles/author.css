@@ -1,0 +1,13 @@
+.imgPres {
+    max-height: 175px;
+    max-width: 200px;
+}
+
+.paragraphe {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.titre {
+    font-weight: bold;
+}

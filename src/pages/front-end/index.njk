@@ -8,12 +8,13 @@
         <ul>
             {% for item in list_articles.data %}
                 <li class="w-full mb-6 shadow hover:shadow-xl lg:max-w-[750px]">
-                    <a class="block" href="{{ item.link }}">
+                    <a class="block" href="{{ item._id }}">
                         <figure>
-                            <img class="w-full" src="{{ 'images/default-articles-image.png' if item.image|length == 0 else 'uploads/' ~ item.image }}" alt="">
+                            <img class="w-full" style="max-height:250px;max-width:auto;" src="{{ 'images/default-articles-image.png' if item.image|length == 0 else 'uploads/' ~ item.image }}" alt="">
                         </figure>
                         <section class="p-8 pb-14">
-                            <p class="text-2xl font-bold">{{ item.title }}</p>
+                            <h2 class="text-2xl font-bold">{{ item.title }}</h2>
+                            <p>{{ item.abstract }}</p>
                             <p>{{ item.content }}</p>
                         </section>
                     </a>

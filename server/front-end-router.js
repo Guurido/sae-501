@@ -50,6 +50,22 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/article(.html)?:id", async (req, res) => {
+    const articleId = req.params.id;
+    let article = null;
+    try {
+        // Récupérer les détails de l'article en fonction de l'ID
+        const response = await axios.get(`${res.locals.base_url}/api/articles/${articleId}`);
+        article = response.data;
+    } catch (error) {
+        console.error("Error fetching article details:", error);
+    }
+
+    res.render("pages/front-end/article.njk", { 
+        article,
+    });
+});
+
 // "(.html)?" makes ".html" optional
 router.get("/a-propos(.html)?", async (_req, res) => {
     let options = {
