@@ -27,31 +27,38 @@ router.get(`/${base}/`, async (req, res) => {
 });
 
 // Create or update jpo 
-router.post(`/${base}/:id`, async (req, res) => {
+router.post(`/${base}/`, async (req, res) => {
     let jpo = {
         date: req.body.name,
     }
+    fs.readFile(jsonFilePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Erreur lors de la lecture du fichier JSON:", err);
+            res.status(500).send("Erreur lors de la lecture du fichier JSON");
+            return;
+        }
 
-    try {
-        // Convertir les données en objet JavaScript
-        const jpoData = JSON.parse(data);
-        // Mettre à jour les données de l'élément correspondant à l'ID
-        jpoData.date = jpo.date;
-        
-        // Écrire les données mises à jour dans le fichier JSON
-        fs.writeFile(jsonFilePath, JSON.stringify(jpoData), (err) => {
-            if (err) {
-                console.error("Erreur lors de l'écriture dans le fichier JSON:", err);
-                res.status(500).send("Erreur lors de l'écriture dans le fichier JSON");
-                return;
-            } });
-            // Rendre à nouveau la page add-edit.njk avec les données mises à jour
-            res.redirect(`${res.locals.admin_url}?`);
-                    
-    } catch (err) {
-        console.error("Erreur lors de la mise à jour des données:", err);
-        res.status(500).send("Erreur lors de la mise à jour des données");
-    }
+        try {
+            // Convertir les données en objet JavaScript
+            const jpoData = JSON.parse(data);
+            // Mettre à jour les données de l'élément correspondant à l'ID
+            jpoData.date = jpo.date;
+            
+            // Écrire les données mises à jour dans le fichier JSON
+            fs.writeFile(jsonFilePath, JSON.stringify(jpoData), (err) => {
+                if (err) {
+                    console.error("Erreur lors de l'écriture dans le fichier JSON:", err);
+                    res.status(500).send("Erreur lors de l'écriture dans le fichier JSON");
+                    return;
+                } });
+                // Rendre à nouveau la page add-edit.njk avec les données mises à jour
+                res.redirect(`${res.locals.admin_url}?`);
+                       
+        } catch (err) {
+            console.error("Erreur lors de la mise à jour des données:", err);
+            res.status(500).send("Erreur lors de la mise à jour des données");
+        }
+    });
 });
 
 export default router;
