@@ -1,13 +1,25 @@
-.imgPres {
-    max-height: 175px;
-    max-width: 200px;
-}
-
 .paragraphe {
     display: flex;
     justify-content: space-evenly;
 }
+.author-box {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: fit-content;
+}
 
 .titre {
+    font-size: 20px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
+
+.imgPres {
+    margin-top: 5px;
+    max-height: 175px;
+    max-width: 200px;
+}
+

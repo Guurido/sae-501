@@ -11,7 +11,7 @@
 <h1 class="text-3xl font-bold mb-4">Auteurs</h1>
 <section class="paragraphe">
     {% for item in list_authors.data %}
-    <div class="text-container">
+    <div class="text-container author-box">
         <h2 class="titre">{{ item.lastname }} {{ item.firstname }}</h2>
         <p class="pres">{{ item.bio }}</p>
         <img src="{{'/uploads/'~item.image }}" alt="photo de {{ item.firstname }}" class="imgPres">
