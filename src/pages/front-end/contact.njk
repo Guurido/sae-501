@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="/styles/contact.css">
 {% endblock %}
 
+
+
 {% block main %}
 
 <section>
@@ -21,7 +23,7 @@
 </section>
 
 <div class="form">
-    <form action="/submit" method="post" class="formConact">
+    <form method="post" data-form="contact">
         <label for="lastname">Nom de famille:</label>
         <input type="text" id="lastname" name="lastname" required>
 
@@ -54,5 +56,5 @@
         95200 Sarcelles
     </p>
 </section>
-    
+
 {% endblock %}

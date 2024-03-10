@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import fs from "fs";
 import querystring from "querystring";
 
-import MESSAGE from '#models/message.js';
-
+import message from '#models/message.js';
 
 const router = express.Router();
 const base = "messages";
@@ -67,14 +66,14 @@ router.get(`/${base}`, async (req, res) => {
     listIds = (listIds || []).filter(mongoose.Types.ObjectId.isValid).map((item) => new mongoose.Types.ObjectId(item))
     
     try {
-        const listRessources = await MESSAGE.aggregate([
+        const listRessources = await message.aggregate([
             ...(listIds.length ? [{ $match: { _id: { $in: listIds } }}] : []),
             { $sort : { _id : -1 } },
             { "$skip": Math.max(page - 1, 0) * perPage },
             { "$limit": perPage },
         ])
 
-        const count = await MESSAGE.count(
+        const count = await message.count(
             (listIds.length ? {_id: {$in: listIds}} : null)
         );
 
@@ -113,11 +112,11 @@ router.get(`/${base}`, async (req, res) => {
  *          pattern: '([0-9a-f]{24})'
  *     responses:
  *       200:
- *         description: Returns a specific MESSAGE
+ *         description: Returns a specific message
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/MESSAGE'
+ *               $ref: '#/components/schemas/message'
  *       400:
  *         description: Something went wrong
  *         content:
@@ -134,7 +133,7 @@ router.get(`/${base}`, async (req, res) => {
 router.get(`/${base}/:id`, async (req, res) => {
     let listErrors =  []
 
-    const ressource = await MESSAGE.findOne({ _id: req.params.id }).orFail().catch(() => {
+    const ressource = await message.findOne({ _id: req.params.id }).orFail().catch(() => {
         res.status(404).json({ errors: [...listErrors, "Élément non trouvé"] })
     });
 
@@ -156,7 +155,7 @@ router.get(`/${base}/:id`, async (req, res) => {
  *            properties:
  *              title:
  *                type: string
- *                description: MESSAGE's title
+ *                description: message's title
  *                required: true
  *              content:
  *                type: string
@@ -165,11 +164,11 @@ router.get(`/${base}/:id`, async (req, res) => {
  *                format: binary
  *     responses:
  *       201:
- *         description: Creates a MESSAGE
+ *         description: Creates a message
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/MESSAGE'
+ *               $ref: '#/components/schemas/message'
  *       400:
  *         description: Something went wrong
  *         content:
@@ -177,18 +176,9 @@ router.get(`/${base}/:id`, async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post(`/${base}`, upload.single("image"), async (req, res) => {
-    let imagePayload = {}
+router.post(`/${base}`, async (req, res) => {
     let listErrors =  []
-    let targetPath = undefined;
-    const uploadedImage = req.body.file || req.file;
-
-    if (uploadedImage) {
-        let imageName;
-        ({image_path: targetPath, errors: listErrors, image_name: imageName} = uploadImage(uploadedImage, res.locals.upload_dir))
-        imagePayload = { image: imageName }
-    }
-
+   
     if(listErrors.length) {
         return res.status(400).json({ 
             errors: listErrors, 
@@ -196,7 +186,7 @@ router.post(`/${base}`, upload.single("image"), async (req, res) => {
         })
     }
 
-    const ressource = new MESSAGE({ ...req.body, ...imagePayload });
+    const ressource = new message({ ...req.body});
 
     await ressource.save().then(() => {
         res.status(201).json(ressource)
@@ -205,105 +195,13 @@ router.post(`/${base}`, upload.single("image"), async (req, res) => {
         res.status(400).json({
             errors: [
                 ...listErrors, 
-                ...deleteUpload(targetPath), 
                 ...Object.values(err?.errors).map((val) => val.message)
             ]
         })
     })
 });
 
-/**
- * @openapi
- * /messages/{id}:
- *   put:
- *     tags:
- *      - messages
- *     parameters:
- *      - name: id
- *        in: path
- *        description: message's _id
- *        required: true
- *        schema:
- *          type: string
- *          pattern: '([0-9a-f]{24})'
- *     requestBody:
- *      content:
- *        multipart/form-data:
- *          schema:
- *            type: object
- *            required: ['title']
- *            properties:
- *              title:
- *                type: string
- *                description: MESSAGE's title
- *              content:
- *                type: string
- *              image:
- *                type: string
- *                format: binary
- *     responses:
- *       200:
- *         description: Updates a specific MESSAGE
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/MESSAGE'
- *       400:
- *         description: Something went wrong
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
- */
-router.put(`/${base}/:id`, upload.single("image"), async (req, res) => {
-    let imagePayload = {}
-    let listErrors =  []
-    let targetPath = undefined;
 
-    const uploadedImage = req.body.file || req.file;
-    
-    if (uploadedImage) {
-        let imageName;
-        ({image_path: targetPath, errors: listErrors, image_name: imageName} = uploadImage(uploadedImage, res.locals.upload_dir))
-        imagePayload = { image: imageName }
-    }
-
-    let oldRessource = {}
-    try {
-        oldRessource = await MESSAGE.findById(req.params.id).lean();
-    } catch (error) {
-        oldRessource = {}
-    }
-
-    if(listErrors.length) {
-        return res.status(400).json({ 
-            errors: listErrors, 
-            ressource: { ...oldRessource, ...req.body }
-        })
-    }
-
-    const ressource = await MESSAGE.findOneAndUpdate({ _id: req.params.id }, { ...req.body, _id: req.params.id, ...imagePayload }, { new: true })
-    .orFail()
-    .catch((err) => {
-        if (err instanceof mongoose.Error.DocumentNotFoundError) {
-            res.status(404).json({
-                errors: [`La SAÉ "${req.params.id}" n'existe pas`],
-            });
-        } else if(err instanceof mongoose.Error.CastError) {
-            res.status(400).json({
-                errors: [`"${req.params.id}" n'est pas un _id valide`],
-            });
-        } else {
-            // Object.fromEntries(Object.entries({ title: '', content: 'Hello' }).filter(([_, v]) => v != null && v.length));
-            res.status(400).json({ 
-                errors: [...listErrors, ...Object.values(err?.errors || [{'message': "Il y a eu un problème"}]).map((val) => val.message), ...deleteUpload(targetPath)], 
-                ressource: { ...oldRessource, ...req.body }
-            })
-        }
-    });
-
-    return res.status(200).json(ressource)
-});
 
 /**
  * @openapi
@@ -321,11 +219,11 @@ router.put(`/${base}/:id`, upload.single("image"), async (req, res) => {
  *          pattern: '([0-9a-f]{24})'
  *     responses:
  *       200:
- *         description: Deletes a specific MESSAGE
+ *         description: Deletes a specific message
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/MESSAGE'
+ *               $ref: '#/components/schemas/message'
  *       400:
  *         description: Something went wrong
  *         content:
@@ -341,7 +239,7 @@ router.put(`/${base}/:id`, upload.single("image"), async (req, res) => {
  */
 router.delete(`/${base}/:id`, async (req, res) => {
     try {
-        const ressource = await MESSAGE.findByIdAndDelete(req.params.id)
+        const ressource = await message.findByIdAndDelete(req.params.id)
 
         if (ressource?.image) {
             const targetPath = `${res.locals.upload_dir}${ressource.image}`;
@@ -352,7 +250,7 @@ router.delete(`/${base}/:id`, async (req, res) => {
             return res.status(200).json(ressource);
         }
         return res.status(404).json({
-            errors: [`Le message "${req.params.id}" n'existe pas`],
+            errors: [`La message "${req.params.id}" n'existe pas`],
         });
     } catch (error) {
         return res

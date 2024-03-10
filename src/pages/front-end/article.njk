@@ -1,15 +1,19 @@
 {% extends "layouts/front-end/base.njk" %}
-{% block title %}Auteurs{% endblock %}
+{% block title %}Article{% endblock %}
 {% set bubble_color = "gris" %}
 
+{% block styles %}
+<link rel="stylesheet" href="/styles/article.css">
+{% endblock %}
 
 {% block main %}
-<h1 class="text-3xl font-bold mb-4">{{ article.title }}</h1>
-<section class="paragraphe">
-    <div class="text-container">
-        <h2 class="titre">{{ item.lastname }} {{ item.firstname }}</h2>
-        <p class="pres">{{ item.bio }}</p>
-        <img src="{{'/uploads/'~item.image }}" alt="photo de {{ item.firstname }}" class="imgPres">
-    </div>
-</section>
+
+<div class="container">
+    <h1 class="font-bold break-normal text-3xl md:text-5xl title">{{ article.title }}</h1>
+    <figure>
+        <img class="image" src="{{ '/uploads/' ~ article.image }}" alt="">
+    </figure>
+    <p class="abstract">{{ article.abstract }}</p>
+    <p class="content">{{ article.content }}</p>
+</div>
 {% endblock %}

@@ -2,21 +2,25 @@
 {% block title %}Accueil{% endblock %}
 {% set bubble_color = "rose" %}
 
+{% block styles %}
+<link rel="stylesheet" href="/styles/index.css">
+{% endblock %}
+
 {% block main %}
     <h1 class="text-3xl font-bold mb-4">Articles sur le BUT MMI</h1>
     <section class="flex justify-between flex-col-reverse lg:flex-row sm:gap-x-10 gap-y-6">
         <ul>
-            {% for item in list_articles.data %}
-                <li class="w-full mb-6 shadow hover:shadow-xl lg:max-w-[750px]">
-                    <a class="block" href="{{ item._id }}">
+            {% for article in list_articles.data %}
+                <li class="w-full mb-6 shadow hover:shadow-xl lg:max-w-[750px] article">
+                    <a class="block" href="{{ '/articles/' ~ article._id }}">
                         <figure>
-                            <img class="w-full" style="max-height:250px;max-width:auto;" src="{{ 'images/default-articles-image.png' if item.image|length == 0 else 'uploads/' ~ item.image }}" alt="">
+                            <img class="w-full image" src="{{ 'images/default-articles-image.png' if article.image|length == 0 else 'uploads/' ~ article.image }}" alt="">
                         </figure>
                         <section class="p-8 pb-14">
-                            <h2 class="text-2xl font-bold">{{ item.title }}</h2>
-                            <p>{{ item.abstract }}</p>
-                            <p>{{ item.content }}</p>
-                            <p>Fait par {{item.author.firstname}} {{item.author.lastname}}</p>
+                            <h2 class="text-2xl font-bold">{{ article.title }}</h2>
+                            <p class="abstract">{{ article.abstract }}</p>
+                            <p class="content">{{ article.content }}</p>
+                            <p>Fait par {{article.author.firstname}} {{article.author.lastname}}</p>
                         </section>
                     </a>
                 </li>
@@ -26,11 +30,11 @@
             <figure class="logo">
                 <img src="/images/logo-cyu-blanc.png" width="200" alt="">
             </figure>
-
+            
             <section class="textes">
-                <p class="text-2xl">Journée portes ouvertes</p>
+                <p class="text-2xl">{{jpo.name}}</p>
                 <p class="text-4xl mb-3">
-                    27/01/2024,
+                    {{jpo.date}},
                     <br>
                     de 10h à 17h
                 </p>
@@ -38,4 +42,5 @@
             </section>
         </a>
     </section>
+
 {% endblock %}

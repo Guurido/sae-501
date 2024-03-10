@@ -1,0 +1,42 @@
+{% extends "layouts/back-end/base.njk" %}
+{% set page_name = "others" %}
+{% block title %}Others{% endblock %}
+
+{% import "components/back-end/pagination.njk" as pagination with context %}
+
+{% block main %}
+    <div class="bg-white rounded-2xl shadow-md pb-6">
+        <header class="mb-1 p-6 pl-8 flex justify-between lg:flex-row flex-col">
+            <p class="text-4xl">
+            Liste articles
+                <span class="block text-sm">{{ list_others.count }} éléments au total</span>
+            </p>
+            <a href="{{ admin_url ~ "/others/add" }}" class="text-md items-center text-blue-500 hover:text-blue-900">Ajouter un nouvel article</a>
+        </header>
+
+        <table class="w-full table-fixed bg-white rounded-lg overflow-hidden border-collapse">
+            <thead class="">
+                <tr class="text-slate-800">
+                    <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Titre</th>
+                    <th class="font-bold pl-8 text-left border-solid border-slate-200 border-b pb-5">Lien Youtube</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in list_others.data %}
+                    <tr class="hover:bg-neutral-50">
+                        <td class="bg-transparent border-solid border-slate-200 border-b p-4 pl-8" data-label="Titre">{{ item.title }}</td>
+                    </tr>
+                    
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center bg-transparent border-solid border-slate-200 border-b p-4 pl-8">Pas de contenu pour le moment</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </tbody>
+        </table>
+        <footer class="flex justify-between px-4">
+            {{ pagination.item(list_others) }}
+        </footer>
+    </div>
+{% endblock %}

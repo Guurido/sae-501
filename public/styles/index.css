@@ -1,0 +1,18 @@
+.article .image {
+    max-height: 350px;
+    max-width: auto;
+}
+
+.article .abstract {
+    font-style: italic;
+    color: grey;
+    margin-top: 20px;
+}
+
+.article .content {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
