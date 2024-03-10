@@ -2,6 +2,8 @@
 
 // SIDENAV
 @include mobile {
+
+    // MENU BURGER
     .navigation {
         display: none;
     }
@@ -24,5 +26,132 @@
     }
     .sidenav {
         z-index: 9999;
+    }
+
+    // VIDEO 
+    .head .title {
+        font-size: 1.5rem; 
+    }
+
+    .conteneur-video {
+        width: 100%;
+    }
+
+    .txt-video {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .video {
+        width: 100%;
+        height: auto;
+    }
+
+    // FOOTER 
+    .conteneur-footer {
+        padding: 20px;
+    }
+
+    .img {
+        text-align: center; 
+        margin-bottom: 20px; 
+    }
+
+    .all {
+        text-align: center; 
+    }
+
+    .hyperliens {
+        padding: 0;
+    }
+
+    .liens {
+        margin-bottom: 20px;
+        .spe {
+            display: inline-block; 
+            margin-right: 10px; 
+        }
+    }
+
+    .txt {
+        font-size: 0.9rem;
+    }
+    
+    .conteneur-footer {
+        padding: 20px;
+    }
+
+    .img {
+        text-align: center; 
+        margin-bottom: 20px;
+    }
+
+    .all {
+        text-align: center; 
+    }
+
+    .hyperliens {
+        padding: 0; 
+    }
+
+    // LIEUX DE VIE
+    .titre {
+        font-size: 1.2rem;
+    }
+
+    .pres {
+        font-size: 0.9rem;
+    }
+
+    .imgPres {
+        width: 100%;
+        height: auto;
+    }
+    ul {
+        display: block; 
+    }
+
+    li {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    // A PROPOS
+    .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gap-x-4 {
+        margin-bottom: 20px;
+    }
+
+    // CONTACT
+    .title {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .form {
+        margin-bottom: 20px;
+    }
+
+    .formConact {
+        width: 100%; 
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select textarea input{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+    .btnsub {
+        width: 100%;
     }
 }
